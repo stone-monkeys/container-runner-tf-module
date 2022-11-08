@@ -4,7 +4,7 @@ resource "helm_release" "container-agent" {
 
   repository = "https://packagecloud.io/circleci/container-agent/helm"
   chart      = "container-agent"
-  namespace  = "default"
+  namespace  = var.namespace
 
   values = [
     "${file("values.yaml")}"
