@@ -1,4 +1,4 @@
 agent:
   resourceClasses:
     db-cci-ns/terraform-module:
-      token: holder
+      token: ${TOKEN}
