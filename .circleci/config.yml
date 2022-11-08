@@ -12,12 +12,12 @@ workflows:
           context: terraform
           requires:
             - terraform/fmt
-      # - terraform/plan:
-      #     checkout: true
-      #     context: terraform
-      #     persist-workspace: true
-      #     requires:
-      #       - terraform/validate
+      - terraform/plan:
+          checkout: true
+          context: terraform
+          persist-workspace: true
+          requires:
+            - terraform/validate
       # - terraform/apply:
       #     attach-workspace: true
       #     context: terraform
@@ -26,3 +26,5 @@ workflows:
       #         only: main
       #     requires:
       #       - terraform/plan
+
+# VS Code Extension Version: 1.0.0
