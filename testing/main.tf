@@ -1,5 +1,5 @@
 module "container-runner"{
-    source = "../"
+    source = "/root/project/"
 
     values = "/root/project/testing"
 }
