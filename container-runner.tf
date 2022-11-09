@@ -7,7 +7,8 @@ resource "helm_release" "container-agent" {
   namespace  = var.namespace
 
   values = [
-    "${file("${var.values}")}"
+    # "${file("${var.values}")}"
+    file("${var.values}/values.yaml")
   ]
 
   set {
