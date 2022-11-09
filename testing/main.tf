@@ -1,5 +1,5 @@
 module "container-runner"{
     source = "../"
 
-    values = "testing/values.yaml"
+    values = "/root/project/testing/values.yaml"
 }
