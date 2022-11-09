@@ -6,12 +6,15 @@ workflows:
     jobs:
       - terraform/fmt:
           checkout: true
+          path: "/testing/"
       - terraform/validate:
           checkout: true
+          path: "/testing/"
           requires:
             - terraform/fmt
       - terraform/plan:
           checkout: true
+          path: "/testing/"
           persist-workspace: true
           requires:
             - terraform/validate
