@@ -34,7 +34,17 @@ jobs:
       - image: cimg/aws:2022.06.1
     steps: 
       - checkout
-      - k-connect/install 
+      - k-connect/install
+      - k-connect/configure:
+                config_file_path: >-
+                  https://raw.githubusercontent.com/stone-monkeys/CircleCI-sample-project/main/config.yaml
+      - k-connect/use:
+                alias: eks-test-kconnect
+                cluster_id: 'arn:aws:eks:eu-west-1:660990364978:cluster/aaron-foxy-dev'
+                cluster_provider: eks
+      - run:
+                command: kubectl get all
+                name: Test kconnect connection
       - terraform/validate:
           path: "./testing/"
 
