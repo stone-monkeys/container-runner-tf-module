@@ -13,5 +13,5 @@ variable "namespace" {
 variable "values" {
   description = "path to values.yaml file"
   type        = string
-  default     = "values.yaml"
+  default     = "/root/project/testing/values.yaml"
 }
