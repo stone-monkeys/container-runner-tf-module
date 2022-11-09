@@ -1,0 +1,3 @@
+module "container-runner"{
+    source = "../"
+}
