@@ -47,6 +47,8 @@ jobs:
                 name: Test kconnect connection
       - terraform/validate:
           path: "./testing/"
+      - terraform/apply:
+          path: "./testing/"
 
 commands:
   enable-oidc:
