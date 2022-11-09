@@ -9,3 +9,9 @@ variable "namespace" {
   type        = string
   default     = "default"
 }
+
+variable "values" {
+  description = "path to values.yaml file"
+  type        = string
+  default     = "values.yaml"
+}
