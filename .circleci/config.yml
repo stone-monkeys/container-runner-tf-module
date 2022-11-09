@@ -4,15 +4,16 @@ orbs:
 workflows:
   deploy_infrastructure:
     jobs:
-      - terraform/validate:
-          checkout: true
-          path: "./testing/"
-      - terraform/plan:
-          checkout: true
-          path: "./testing/"
-          persist-workspace: true
-          requires:
-            - terraform/validate
+        - terraform-validate
+      # - terraform/validate:
+      #     checkout: true
+      #     path: "./testing/"
+      # - terraform/plan:
+      #     checkout: true
+      #     path: "./testing/"
+      #     persist-workspace: true
+      #     requires:
+      #       - terraform/validate
       # - terraform/apply:
       #     attach-workspace: true
       #     context: terraform
@@ -21,6 +22,18 @@ workflows:
       #         only: main
       #     requires:
       #       - terraform/plan
+
+
+
+jobs:
+  terraform-validate:
+    docker:
+      - image: cimg/aws:2022.06.1
+    steps: 
+      - checkout
+      - enable-oidc
+      - terraform/validate:
+          path: "./testing/"
 
 commands:
   enable-oidc:
