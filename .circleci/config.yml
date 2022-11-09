@@ -7,8 +7,6 @@ workflows:
       - terraform/validate:
           checkout: true
           path: "./testing/"
-          requires:
-            - terraform/fmt
       - terraform/plan:
           checkout: true
           path: "./testing/"
