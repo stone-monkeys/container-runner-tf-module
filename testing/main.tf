@@ -1,5 +1,5 @@
-module "container-runner"{
-    source = "/root/project/"
+module "container-runner" {
+  source = "/root/project/"
 
-    values = "/root/project/testing"
+  values = "/root/project/testing"
 }
