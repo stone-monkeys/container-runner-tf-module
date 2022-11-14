@@ -19,7 +19,7 @@ workflows:
             - terraform/validate
       - terraform/apply:
           attach-workspace: true
-          context: terraform
+          path: "./testing/"
           filters:
             branches:
               only: main
