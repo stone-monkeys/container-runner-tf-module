@@ -1,6 +1,14 @@
 # container-runner-tf-module
 Terraform module for installing container-runner to kubernetes clusters. Can be configured to take a path to kube config, a namespace and values.yaml for helm deployment of the container-agent
 
+This module was developed with the goal of helping organizations manage their use of Container Runner as IaC
+
+## What is Container Runner?
+ - https://circleci.com/docs/container-runner/
+
+## How to install Container Runner? 
+- https://circleci.com/docs/container-runner-installation/
+
 ## Requirements
 
 - Terraform
