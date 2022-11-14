@@ -6,27 +6,16 @@ orbs:
 workflows:
   deploy_infrastructure:
     jobs:
-        # - terraform-validate:
-        #     context: cr-tf-oidc
-      - terraform/validate:
-          checkout: true
-          path: "./testing/"
-      - terraform/plan:
-          checkout: true
-          path: "./testing/"
-          persist-workspace: true
+      - terraform-validate
+      - terraform-plan:
           requires:
-            - terraform/validate
-      - terraform/apply:
-          attach-workspace: true
-          path: "./testing/"
+            - terraform-validate
+      - terraform-apply:
           filters:
             branches:
               only: main
           requires:
-            - terraform/plan
-
-
+            - terraform-plan
 
 jobs:
   terraform-validate:
@@ -47,8 +36,46 @@ jobs:
                 name: Test kconnect connection
       - terraform/validate:
           path: "./testing/"
+  
+  terraform-plan:
+    docker:
+      - image: cimg/aws:2022.06.1
+    steps: 
+      - checkout
+      - k-connect/install
+      - k-connect/configure:
+                config_file_path: >-
+                  https://raw.githubusercontent.com/stone-monkeys/CircleCI-sample-project/main/config.yaml
+      - k-connect/use:
+                alias: eks-test-kconnect
+                cluster_id: 'arn:aws:eks:eu-west-1:660990364978:cluster/aaron-foxy-dev'
+                cluster_provider: eks
+      - run:
+                command: kubectl get all
+                name: Test kconnect connection
+      - terraform/plan:
+          path: "./testing/"
+  
+  terraform-apply:
+    docker:
+      - image: cimg/aws:2022.06.1
+    steps: 
+      - checkout
+      - k-connect/install
+      - k-connect/configure:
+                config_file_path: >-
+                  https://raw.githubusercontent.com/stone-monkeys/CircleCI-sample-project/main/config.yaml
+      - k-connect/use:
+                alias: eks-test-kconnect
+                cluster_id: 'arn:aws:eks:eu-west-1:660990364978:cluster/aaron-foxy-dev'
+                cluster_provider: eks
+      - run:
+                command: kubectl get all
+                name: Test kconnect connection
       - terraform/apply:
           path: "./testing/"
+
+      
 
 commands:
   enable-oidc:
