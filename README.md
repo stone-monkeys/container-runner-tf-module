@@ -34,7 +34,7 @@ This module was developed with the goal of helping organizations manage their us
 
 ```hcl
 module "container-runner" {
-  source = "" #Add private git repo URL here
+  source = "github.com/stone-monkeys/container-runner-tf-module"
 
   values                       = "~/path/to/values/file"
   namespace                    = "container-runner"
