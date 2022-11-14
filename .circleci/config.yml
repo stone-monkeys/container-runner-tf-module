@@ -6,7 +6,10 @@ orbs:
 workflows:
   deploy_infrastructure:
     jobs:
-      - terraform-validate
+      - terraform-test
+      - terraform-validate:
+          requires:
+            - terraform-test
       - terraform-plan:
           requires:
             - terraform-validate
@@ -35,7 +38,7 @@ jobs:
                 command: kubectl get all
                 name: Test kconnect connection
       - terraform/validate:
-          path: "./testing/"
+          path: "./example/"
   
   terraform-plan:
     docker:
@@ -54,7 +57,7 @@ jobs:
                 command: kubectl get all
                 name: Test kconnect connection
       - terraform/plan:
-          path: "./testing/"
+          path: "./example/"
   
   terraform-apply:
     docker:
@@ -73,6 +76,12 @@ jobs:
                 command: kubectl get all
                 name: Test kconnect connection
       - terraform/apply:
-          path: "./testing/"
+          path: "./example/"
 
+  terraform-test:
+    docker: 
+      - image: cimg/aws:2022.06.1
+    steps:
+      - checkout
+      - run: terraform test
 # VS Code Extension Version: 1.0.0
