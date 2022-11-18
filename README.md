@@ -28,7 +28,7 @@ This module was developed with the goal of helping organizations manage their us
 |------|---------|------------|
 |config_path| `~/.kube/config` | Path to kubec config. |
 |namespace| `default` | Namespace to deploy the container-agent to. |
-|values | `values.yaml` | Values.yaml file for helm deployment of Container Runner. Resource Class Token will go here|
+|values | `.` | Values.yaml file for helm deployment of Container Runner. Resource Class Token will go here|
 
 ### Example usage
 
