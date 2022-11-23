@@ -1,36 +1,10 @@
-version: '2.1'
-orbs:
-  terraform: circleci/terraform@3.1
-  k-connect: db-cci-ns/k-connect@0.5.0
-  
+version: '2.1'  
 workflows:
   deploy_infrastructure:
     jobs:
       - terraform-test
-      - terraform-validate:
-          requires:
-            - terraform-test
-      - terraform-plan:
-          requires:
-            - terraform-validate
 
 jobs:
-  terraform-validate:
-    docker:
-      - image: cimg/aws:2022.06.1
-    steps: 
-      - checkout
-      - terraform/validate:
-          path: "./example/"
-  
-  terraform-plan:
-    docker:
-      - image: cimg/aws:2022.06.1
-    steps: 
-      - checkout
-      - terraform/plan:
-          path: "./example/"
-
   terraform-test:
     docker: 
       - image: cimg/aws:2022.06.1

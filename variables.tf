@@ -15,3 +15,9 @@ variable "values" {
   type        = string
   default     = "."
 }
+
+variable "chart_version" {
+  description = "helm chart version"
+  type        = string
+  default     = ""
+}
