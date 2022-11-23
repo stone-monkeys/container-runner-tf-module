@@ -29,7 +29,7 @@ This module was developed with the goal of helping organizations manage their us
 |config_path| `~/.kube/config` | Path to kubecl config. |
 |namespace| `default` | Namespace to deploy the container-agent to. |
 |values | `.` | Values.yaml file for helm deployment of Container Runner. Resource Class Token will go here|
-|chart_version| `` | Specify the exact chart version to install. If this is not specified, the latest version is installed |
+|chart_version| "" | Specify the exact chart version to install. If this is not specified, the latest version is installed |
 
 ### Example usage
 
